@@ -14,8 +14,8 @@
     </tr>
     <% for job in (jobs = resque.peek(queue, start, 20)) %>
     <tr>
-      <td class='class'><%= job['class'] %></td>
-      <td class='args'><%=h job['args'].inspect %></td>
+      <td class='class'><%=h job_class(job) %></td>
+      <td class='args'><%=h arguments(job) %></td>
     </tr>
     <% end %>
     <% if jobs.empty? %>

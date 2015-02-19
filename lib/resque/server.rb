@@ -90,6 +90,26 @@ module Resque
         end
       end
 
+      def klass(job)
+        job['class'] || job['payload']['class']
+      end
+
+      def payload(job)
+        job['payload'] || job
+      end
+
+      def active_job?(job)
+        klass(job) == 'ActiveJob::QueueAdapters::ResqueAdapter::JobWrapper'
+      end
+
+      def job_class(job)
+        active_job?(job) ? payload(job)['args'].first['job_class'] : klass(job)
+      end
+
+      def arguments(job)
+        active_job?(job) ? payload(job)['args'].first['arguments'] : payload(job)['args']
+      end
+
       def show_args(args)
         Array(args).map do |a|
           a.to_yaml

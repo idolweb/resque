@@ -1,4 +1,5 @@
 Resque::Server.helpers do
+
   ####################
   #failed.erb helpers#
   ####################
@@ -18,7 +19,7 @@ Resque::Server.helpers do
 
   def failed_per_page
     @failed_per_page = if params[:class]
-      failed_size  
+      failed_size
     else
       20
     end

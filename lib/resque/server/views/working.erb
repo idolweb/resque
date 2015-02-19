@@ -59,7 +59,7 @@
         </td>
         <td class='process'>
           <% if job['queue'] %>
-            <code><%= job['payload']['class'] %></code>
+            <code><%= job_class(job) %></code>
             <small><a class="queue time" href="<%=u "/working/#{worker}" %>"><%= job['run_at'] %></a></small>
           <% else %>
             <span class='waiting'>Waiting for a job...</span>
