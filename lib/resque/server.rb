@@ -99,7 +99,7 @@ module Resque
       end
 
       def active_job?(job)
-        klass(job) == 'ActiveJob::QueueAdapters::ResqueAdapter::JobWrapper'
+        klass(job) =~ /ActiveJob::QueueAdapters::ResqueAdapter::JobWrapper/
       end
 
       def job_class(job)
